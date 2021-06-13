@@ -3,24 +3,19 @@ const inputEl = document.querySelector('#validation-input');
 const dataLength = Number(inputEl.dataset.length);
 
 
-function Valid() {
-    inputEl.classList.add('valid')
-    inputEl.classList.remove('invalid')
-}
-
-function inValid() {
-    inputEl.classList.add('invalid')
-    inputEl.classList.remove('valid')
-}
-
-const onFocusChange = (event) => {
-    if (dataLength === event.currentTarget.value.length) {
-        Valid();
-    } else {
-        inValid();
+function updateClass (addClass, remClass) {
+    inputEl.classList.remove(remClass);
+    inputEl.classList.add(addClass);
     }
     
-}
+    const onFocusChange = (event) => {
+    if (dataLength === event.currentTarget.value.length) {
+    updateClass ("valid","invalid")
+    } else {
+    updateClass ("invalid", "valid")
+    }
+    
+    }
 
 inputEl.addEventListener('blur', onFocusChange);
 
